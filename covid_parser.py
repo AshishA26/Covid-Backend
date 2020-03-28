@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from bs4 import BeautifulSoup
 def parsePage():
     page = requests.get(
@@ -15,11 +16,15 @@ def parsePage():
     # in first row, get all column values
     for td in covid_table_rows[0].find_all("td"):
         # remove any newlines and extra spaces from left and right
-        headings.append(td.p.text.replace('\n', '').strip())
-    print(headings)
+        heading = td.p.text.replace('\n', '').strip()
+        heading = re.sub("\(.*\)", "", heading) #(Pattern, new, input)
+        headings.append(heading)
+
+    #print(headings)
     covid_table_rows.pop(0)  # remove heading row
     # Get the cases:
     table_data = []
+    counter = 1
     for tr in covid_table_rows:
         t_row = {}
          # Each table row is stored in the form of
@@ -32,11 +37,10 @@ def parsePage():
         #}
 
          # find all td's(5) in tr and zip it with t_header
-        counter = 0
         for td, th in zip(tr.find_all("td"), headings):
             t_row[th] = td.text.replace('\n', '').strip()
-            t_row["id"] = counter
-            counter+=1
+        t_row["id"] = counter
+        counter+=1
         table_data.append(t_row)
     return table_data
 if __name__ == "__main__":
