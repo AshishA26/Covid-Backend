@@ -5,8 +5,6 @@ from covid_parser import parsePage
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
-# https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals
-
 @app.route('/', methods=['GET'])
 def home():
     return '''<h1>Distant Reading Archive</h1>
