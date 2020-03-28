@@ -32,8 +32,11 @@ def parsePage():
         #}
 
          # find all td's(5) in tr and zip it with t_header
+        counter = 0
         for td, th in zip(tr.find_all("td"), headings):
             t_row[th] = td.text.replace('\n', '').strip()
+            t_row["id"] = counter
+            counter+=1
         table_data.append(t_row)
     return table_data
 if __name__ == "__main__":
