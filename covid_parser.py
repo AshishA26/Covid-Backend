@@ -18,7 +18,7 @@ def parsePage():
         # remove any newlines and extra spaces from left and right
         heading = td.p.text.replace('\n', '').strip()
         heading = re.sub("\(.*\)", "", heading) #(Pattern, new, input)
-        headings.append(heading)
+        headings.append(heading.strip())
 
     #print(headings)
     covid_table_rows.pop(0)  # remove heading row
