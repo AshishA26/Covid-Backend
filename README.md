@@ -1,6 +1,16 @@
 # Covid-Backend
+Custom REST API for [CovidKWTracker](https://github.com/AbhinavA10/CovidTracker), built with Flask.
+
+This flask application is hosted on Heroku using the [Procfile](./Procfile)
+
 
 API Endpoint: https://covid-kw.herokuapp.com/api/v1/cases/all
+
+API Output, in JSON: 
+
+<p align="center">
+<a href="https://youtu.be/PEgTP5G2Yj8"><img src="./images/API_response.png" width="300"></a>
+</p>
 
 ## Reference Points
 
